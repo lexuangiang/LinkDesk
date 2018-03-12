@@ -93,7 +93,7 @@
     [manager POST:@"http://localhost:8080/linkdeskapi/api/login/" parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         lblMessage.text = @"";
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"info"];
-        [[NSUserDefaults standardUserDefaults] setInteger:[responseObject objectForKey:@"id"] forKey:@"uid"];
+        [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"userId"] forKey:@"uid"];
         [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"jpName"] forKey:@"jpName"];
         [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"name"] forKey:@"elName"];
         [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"avatarUrl"] forKey:@"avatarUrl"];

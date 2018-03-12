@@ -8,6 +8,6 @@
 
 #import "ViewController.h"
 
-@interface UserListViewController : ViewController
+@interface UserListViewController : ViewController <UITableViewDelegate, UITableViewDataSource>
 
 @end
