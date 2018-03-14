@@ -44,6 +44,9 @@
 		F61496B720596E21004AB6A4 /* top_frame_busy@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F614969320596E21004AB6A4 /* top_frame_busy@3x.png */; };
 		F61496B820596E21004AB6A4 /* header_btn_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F614969420596E21004AB6A4 /* header_btn_back@3x.png */; };
 		F61496B920596E21004AB6A4 /* bg_splash@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F614969520596E21004AB6A4 /* bg_splash@3x.png */; };
+		F61496BF205980E1004AB6A4 /* avatar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F61496BE205980E1004AB6A4 /* avatar@3x.png */; };
+		F61496C1205989AB004AB6A4 /* CustomTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F61496C0205989AB004AB6A4 /* CustomTableCell.xib */; };
+		F61496C420598B83004AB6A4 /* UserListTable.m in Sources */ = {isa = PBXBuildFile; fileRef = F61496C320598B83004AB6A4 /* UserListTable.m */; };
 		F6A5D0C7205048DD0005BBFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6A5D0C6205048DD0005BBFC /* LaunchScreen.storyboard */; };
 		F6A5D0CA20506CDC0005BBFC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A5D0C920506CDC0005BBFC /* LoginViewController.m */; };
 		F6B5C60920550C4C00D8C4DF /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B5C60820550C4C00D8C4DF /* UserListViewController.m */; };
@@ -96,6 +99,10 @@
 		F614969320596E21004AB6A4 /* top_frame_busy@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top_frame_busy@3x.png"; sourceTree = "<group>"; };
 		F614969420596E21004AB6A4 /* header_btn_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header_btn_back@3x.png"; sourceTree = "<group>"; };
 		F614969520596E21004AB6A4 /* bg_splash@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_splash@3x.png"; sourceTree = "<group>"; };
+		F61496BE205980E1004AB6A4 /* avatar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "avatar@3x.png"; sourceTree = "<group>"; };
+		F61496C0205989AB004AB6A4 /* CustomTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableCell.xib; sourceTree = "<group>"; };
+		F61496C220598B83004AB6A4 /* UserListTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListTable.h; sourceTree = "<group>"; };
+		F61496C320598B83004AB6A4 /* UserListTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListTable.m; sourceTree = "<group>"; };
 		F6A5D0C6205048DD0005BBFC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6A5D0C820506CDC0005BBFC /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F6A5D0C920506CDC0005BBFC /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -150,6 +157,9 @@
 			children = (
 				F6B5C60720550C4C00D8C4DF /* UserListViewController.h */,
 				F6B5C60820550C4C00D8C4DF /* UserListViewController.m */,
+				F61496C0205989AB004AB6A4 /* CustomTableCell.xib */,
+				F61496C220598B83004AB6A4 /* UserListTable.h */,
+				F61496C320598B83004AB6A4 /* UserListTable.m */,
 			);
 			path = UserListVC;
 			sourceTree = "<group>";
@@ -204,6 +214,7 @@
 		F6E28169204F91A000AF4654 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F61496BE205980E1004AB6A4 /* avatar@3x.png */,
 				F614967A20596E1E004AB6A4 /* bg_login@3x.png */,
 				F614969520596E21004AB6A4 /* bg_splash@3x.png */,
 				F614967420596E1E004AB6A4 /* common_bg_recheckin.png */,
@@ -350,6 +361,7 @@
 				F614969A20596E21004AB6A4 /* list_icon_status_open@3x.png in Resources */,
 				F61496AA20596E21004AB6A4 /* header_logo@3x.png in Resources */,
 				F614969620596E21004AB6A4 /* top_frame_uncheckin@3x.png in Resources */,
+				F61496BF205980E1004AB6A4 /* avatar@3x.png in Resources */,
 				F614969D20596E21004AB6A4 /* header_btn_list@3x.png in Resources */,
 				F61496A220596E21004AB6A4 /* list_btn_reserv_on@3x.png in Resources */,
 				F61496B520596E21004AB6A4 /* list_icon_status_normal@3x.png in Resources */,
@@ -358,6 +370,7 @@
 				F61496B920596E21004AB6A4 /* bg_splash@3x.png in Resources */,
 				F614969820596E21004AB6A4 /* common_bg_recheckin.png in Resources */,
 				F6A5D0C7205048DD0005BBFC /* LaunchScreen.storyboard in Resources */,
+				F61496C1205989AB004AB6A4 /* CustomTableCell.xib in Resources */,
 				F614969C20596E21004AB6A4 /* top_btn_status_busy@3x.png in Resources */,
 				F61496A620596E21004AB6A4 /* dialog_btn_close@3x.png in Resources */,
 				F61496A720596E21004AB6A4 /* login_btn_eye_off@3x.png in Resources */,
@@ -437,6 +450,7 @@
 				F6A5D0CA20506CDC0005BBFC /* LoginViewController.m in Sources */,
 				F6F160A520576BF000661DCC /* TopScreenViewController.m in Sources */,
 				F6E28162204F90B900AF4654 /* main.m in Sources */,
+				F61496C420598B83004AB6A4 /* UserListTable.m in Sources */,
 				F6E28154204F90B800AF4654 /* AppDelegate.m in Sources */,
 				F6B5C60920550C4C00D8C4DF /* UserListViewController.m in Sources */,
 			);

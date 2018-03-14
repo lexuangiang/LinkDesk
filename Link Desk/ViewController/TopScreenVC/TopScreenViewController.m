@@ -14,13 +14,13 @@
     BOOL isChecked;
     NSArray *_pickerData;
     NSString *viewStatus;
-    UIImage *frameOpen, *frameBusy, *frameNormal, *frameUncheckin, *checkout, *checkin, *statusNormal, *statusOpen, *statusBusy, *statusInactive, *avatarDefault ;
+    UIImage *frameOpen, *frameBusy, *frameNormal, *frameUncheckin, *checkout, *checkin, *statusNormal, *statusOpen, *statusBusy, *statusInactive, *avatarDefault, *top_icon_checkin_off, *top_icon_checkin_on ;
     NSString *seatNumber ;
 }
 @end
 
 @implementation TopScreenViewController
-@synthesize btnUserList, btnCheckIn, btnStatus, viewPicker, frameStatus, topView, lblId, lblEnglishName, lblJapaneseName, imgAvatar;
+@synthesize btnUserList, btnCheckIn, btnStatus, viewPicker, frameStatus, topView, lblId, lblEnglishName, lblJapaneseName, imgAvatar, imgIconCheckin;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,7 +47,7 @@
 //        imgAvatar.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:img ]]];
 //    }
     // set data demo
-    
+//    imgAvatar.image = avatarDefault;
     
     
     //
@@ -84,11 +84,11 @@
     statusBusy = [UIImage imageNamed:@"top_btn_status_busy@3x.png"];
     statusInactive = [UIImage imageNamed:@"top_btn_status_inactive@3x.png"];
     //
-    avatarDefault = [UIImage imageNamed:@"top_frame_default@3x.png"];
-    
+//    avatarDefault = [UIImage imageNamed:@"top_frame_default@3x.png"];
+    avatarDefault = [UIImage imageNamed:@"avatar@3x.png"];
     //
-    imgAvatar.image = avatarDefault;
-    
+    top_icon_checkin_on = [UIImage imageNamed:@"top_icon_checkin_on"];
+    top_icon_checkin_off = [UIImage imageNamed:@"top_icon_checkin_off"];
     
 }
 
@@ -164,6 +164,8 @@
         btnStatus.enabled = false;
         [frameStatus setImage:frameUncheckin];
         [btnStatus setBackgroundImage:statusInactive forState:UIControlStateNormal];
+        [imgIconCheckin setImage:top_icon_checkin_off];
+        _lblSeatNumber.text = @"チェックインしましょう";
         //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //        manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -180,6 +182,8 @@
         btnStatus.enabled = true;
         [frameStatus setImage:frameNormal];
         [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
+        [imgIconCheckin setImage:top_icon_checkin_on];
+        _lblSeatNumber.text = @"5F-1-21";
         //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //        manager.requestSerializer = [AFJSONRequestSerializer serializer];

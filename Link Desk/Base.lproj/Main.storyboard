@@ -84,6 +84,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="returnView:" destination="g6a-eV-6z6" eventType="editingDidEndOnExit" id="Qu1-bJ-wdY"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DmE-k5-gQR">
                                         <rect key="frame" x="33" y="200" width="278" height="30"/>
@@ -91,6 +94,9 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <connections>
+                                            <action selector="returnView:" destination="g6a-eV-6z6" eventType="editingDidEndOnExit" id="jqo-GP-DJP"/>
+                                        </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRc-Sl-NT3">
                                         <rect key="frame" x="289" y="195" width="22" height="41"/>
@@ -162,7 +168,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tyV-7Z-B79">
                                 <rect key="frame" x="50" y="0.0" width="325" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="Lou-X6-mT6">
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="検索" id="Lou-X6-mT6">
                                     <rect key="frame" x="0.0" y="0.0" width="325" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -200,7 +206,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-207" y="618"/>
+            <point key="canvasLocation" x="-207.19999999999999" y="617.54122938530736"/>
         </scene>
         <!--Top Screen View Controller-->
         <scene sceneID="e7j-7u-JQ8">
@@ -243,7 +249,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k8M-FB-Wve">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="k8M-FB-Wve">
                                         <rect key="frame" x="42" y="0.0" width="201" height="190"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="190" id="r6A-Db-Z44"/>
@@ -385,6 +391,7 @@
                         <outlet property="btnUserList" destination="xIy-It-jWj" id="IRG-u3-yM7"/>
                         <outlet property="frameStatus" destination="tgy-LA-RyT" id="jeF-Sy-Wtc"/>
                         <outlet property="imgAvatar" destination="k8M-FB-Wve" id="czH-DP-u02"/>
+                        <outlet property="imgIconCheckin" destination="jO8-HA-e1J" id="z7t-pb-ckx"/>
                         <outlet property="lblEnglishName" destination="1xE-ox-Via" id="KHd-8N-oCk"/>
                         <outlet property="lblId" destination="aKa-gN-Sh0" id="MEF-f0-VYC"/>
                         <outlet property="lblJapaneseName" destination="rTR-XL-Kej" id="jmM-rc-Al6"/>
@@ -445,6 +452,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="avatar.png" width="220" height="262"/>
         <image name="bg_login.png" width="320" height="568"/>
         <image name="bg_splash.png" width="320" height="568"/>
         <image name="header_btn_help.png" width="40" height="36"/>

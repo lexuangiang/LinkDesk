@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // custom textfield txtusername
     CALayer *borderUsername = [CALayer layer];
     CGFloat borderWidthUsername = 1;
@@ -26,24 +27,22 @@
     borderUsername.borderWidth = borderWidthUsername;
     [txtUsername.layer addSublayer:borderUsername];
     txtUsername.layer.masksToBounds = YES;
-    
     // custom textfield password
     CALayer *borderPassword = [CALayer layer];
-    CGFloat borderWidthPassword = 1.25;
+    CGFloat borderWidthPassword = 1;
     borderPassword.borderColor = [UIColor darkGrayColor].CGColor;
     borderPassword.frame = CGRectMake(0, txtPassword.frame.size.height - borderWidthPassword, txtPassword.frame.size.width, txtPassword.frame.size.height);
     borderPassword.borderWidth = borderWidthPassword;
     [txtPassword.layer addSublayer:borderPassword];
     txtPassword.layer.masksToBounds = YES;
-    
     // set focus on Username textfield
     [txtUsername becomeFirstResponder];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(returnView:)];
+    
+    [self.view addGestureRecognizer:tap];
     // Call standartUserDefaults to check
     int sodaluu = [[NSUserDefaults standardUserDefaults] integerForKey:@"info"];
     NSLog(@"thong tin o login: %i", sodaluu);
-    //    if (sodaluu == 1){
-    //        NSLog(@"dit con me da luu roi");
-    //    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +82,7 @@
     // tao du lieu gia
     NSString *username = [NSString stringWithFormat:@"giang"];
     NSString *password = [NSString stringWithFormat:@"giang123"];
-    
+//
     // lay du lieu tu textfield
     NSString *user_name = txtUsername.text;
     NSString *pass_word = txtPassword.text;
@@ -105,28 +104,24 @@
 //        lblMessage.text = @"メールアドレスまたはパスワードが違います";
 //    }];
     
-    // Check space indent in textfield
+    // Login with demo data
     if ([user_name isEqualToString:@""] || [pass_word isEqualToString:@""]){
         NSLog(@"Empty username or password");
+        lblMessage.text = @"メールアドレスまたはパスワードが違います";
     }
     else if ([username isEqualToString:user_name] && [password isEqualToString:pass_word]){
         NSLog(@"login ok ");
         lblMessage.text = @"";
-        //        // gan du lieu vao userdefault
-        //        [SaveData setObject:username forKey:@“UserLoginInfo”];
-        //        [SaveData synchronize];
-        //        //
-        //        if ([SaveData stringForKey:@“UserLoginInfo”]) {
-        //            username = [SaveData stringForKey:@“UserLoginInfo”];
-        //        }
         [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"info"];
-        //          NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        //          [defaults setObject:user_name forKey:@"bookmarks"];
         [self performSelector:@selector(showTopScreen) withObject:nil afterDelay:0];
     }
     else {
-        NSLog(@"xin loi ban deo login vao duoc dau vi sai thong tin nhe");
         lblMessage.text = @"メールアドレスまたはパスワードが違います";
     }
+}
+
+- (IBAction)returnView:(id)sender {
+    [txtUsername resignFirstResponder];
+    [txtPassword resignFirstResponder];
 }
 @end

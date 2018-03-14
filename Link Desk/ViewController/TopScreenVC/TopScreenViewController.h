@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblId;
 @property (strong, nonatomic) IBOutlet UIImageView *imgAvatar;
 @property (strong, nonatomic) IBOutlet UILabel *lblSeatNumber;
+@property (strong, nonatomic) IBOutlet UIImageView *imgIconCheckin;
 
 - (IBAction)btnOk:(id)sender;
 - (IBAction)btnCancel:(id)sender;

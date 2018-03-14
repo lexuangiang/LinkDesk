@@ -21,17 +21,12 @@
     //fade in
     imageSplash.alpha = 1.0;
     [UIView animateWithDuration:0.0f animations:^{
-
         [imageSplash setAlpha:1.0f];
-
     } completion:^(BOOL finished) {
 
         //fade out
         [UIView animateWithDuration:2.0f animations:^{
-
             [imageSplash setAlpha:0.0f];
-            //[self performSelector:@selector(showTopScreen) withObject:nil afterDelay:3];
-
         } completion:nil];
 
     }];
@@ -43,7 +38,6 @@
     }
     else {
         [self performSelector:@selector(showLoginScreen) withObject:nil afterDelay:3];
-        NSLog(@"dcmm");
     }
 }
 - (void)showLoginScreen {
