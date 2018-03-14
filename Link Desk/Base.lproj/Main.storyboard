@@ -388,6 +388,7 @@
                         <outlet property="lblEnglishName" destination="1xE-ox-Via" id="KHd-8N-oCk"/>
                         <outlet property="lblId" destination="aKa-gN-Sh0" id="MEF-f0-VYC"/>
                         <outlet property="lblJapaneseName" destination="rTR-XL-Kej" id="jmM-rc-Al6"/>
+                        <outlet property="lblSeatNumber" destination="nRI-mR-XY2" id="AMp-Bb-w0N"/>
                         <outlet property="picker" destination="MeE-0g-v2o" id="i8D-UU-mNW"/>
                         <outlet property="topView" destination="LbM-rm-aAe" id="7lS-Xb-foF"/>
                         <outlet property="viewPicker" destination="z3c-z3-xPa" id="vCB-zD-pRJ"/>

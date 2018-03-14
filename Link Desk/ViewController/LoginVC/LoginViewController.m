@@ -80,49 +80,53 @@
 
 - (IBAction)Login:(id)sender {
     NSLog(@"clicked login button");
+    // tao du lieu gia
+    NSString *username = [NSString stringWithFormat:@"giang"];
+    NSString *password = [NSString stringWithFormat:@"giang123"];
     
     // lay du lieu tu textfield
     NSString *user_name = txtUsername.text;
     NSString *pass_word = txtPassword.text;
     
-//    //
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    NSDictionary *params = @{@"username": user_name,
-                             @"password": pass_word};
-    [manager POST:@"http://localhost:8080/linkdeskapi/api/login/" parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        lblMessage.text = @"";
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"info"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"userId"] forKey:@"uid"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"jpName"] forKey:@"jpName"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"name"] forKey:@"elName"];
-        [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"avatarUrl"] forKey:@"avatarUrl"];
-        [self performSelector:@selector(showTopScreen) withObject:nil afterDelay:0];
-    } failure:^(NSURLSessionTask *operation, NSError *error) {
-        lblMessage.text = @"メールアドレスまたはパスワードが違います";
-    }];
-    // Check space indent in textfield
-//    if ([user_name isEqualToString:@""] || [pass_word isEqualToString:@""]){
-//        NSLog(@"Empty username or password");
-//    }
-//    else if ([username isEqualToString:user_name] && [password isEqualToString:pass_word]){
-//        NSLog(@"login ok ");
+    // connect server
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//    NSDictionary *params = @{@"username": user_name,
+//                             @"password": pass_word};
+//    [manager POST:@"http://localhost:8080/linkdeskapi/api/login/" parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
 //        lblMessage.text = @"";
-//        //        // gan du lieu vao userdefault
-//        //        [SaveData setObject:username forKey:@“UserLoginInfo”];
-//        //        [SaveData synchronize];
-//        //        //
-//        //        if ([SaveData stringForKey:@“UserLoginInfo”]) {
-//        //            username = [SaveData stringForKey:@“UserLoginInfo”];
-//        //        }
 //        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"info"];
-//        //          NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        //          [defaults setObject:user_name forKey:@"bookmarks"];
+//        [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"userId"] forKey:@"uid"];
+//        [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"jpName"] forKey:@"jpName"];
+//        [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"name"] forKey:@"elName"];
+//        [[NSUserDefaults standardUserDefaults] setValue:[responseObject objectForKey:@"avatarUrl"] forKey:@"avatarUrl"];
 //        [self performSelector:@selector(showTopScreen) withObject:nil afterDelay:0];
-//    }
-//    else {
-//        NSLog(@"xin loi ban deo login vao duoc dau vi sai thong tin nhe");
+//    } failure:^(NSURLSessionTask *operation, NSError *error) {
 //        lblMessage.text = @"メールアドレスまたはパスワードが違います";
-//    }
+//    }];
+    
+    // Check space indent in textfield
+    if ([user_name isEqualToString:@""] || [pass_word isEqualToString:@""]){
+        NSLog(@"Empty username or password");
+    }
+    else if ([username isEqualToString:user_name] && [password isEqualToString:pass_word]){
+        NSLog(@"login ok ");
+        lblMessage.text = @"";
+        //        // gan du lieu vao userdefault
+        //        [SaveData setObject:username forKey:@“UserLoginInfo”];
+        //        [SaveData synchronize];
+        //        //
+        //        if ([SaveData stringForKey:@“UserLoginInfo”]) {
+        //            username = [SaveData stringForKey:@“UserLoginInfo”];
+        //        }
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"info"];
+        //          NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        //          [defaults setObject:user_name forKey:@"bookmarks"];
+        [self performSelector:@selector(showTopScreen) withObject:nil afterDelay:0];
+    }
+    else {
+        NSLog(@"xin loi ban deo login vao duoc dau vi sai thong tin nhe");
+        lblMessage.text = @"メールアドレスまたはパスワードが違います";
+    }
 }
 @end

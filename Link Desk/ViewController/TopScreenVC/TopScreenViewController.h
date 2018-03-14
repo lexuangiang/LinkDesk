@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblEnglishName;
 @property (strong, nonatomic) IBOutlet UILabel *lblId;
 @property (strong, nonatomic) IBOutlet UIImageView *imgAvatar;
+@property (strong, nonatomic) IBOutlet UILabel *lblSeatNumber;
 
 - (IBAction)btnOk:(id)sender;
 - (IBAction)btnCancel:(id)sender;
@@ -27,3 +28,4 @@
 - (IBAction)checkIn:(id)sender;
 
 @end
+

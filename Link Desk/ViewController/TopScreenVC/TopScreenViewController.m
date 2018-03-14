@@ -15,6 +15,7 @@
     NSArray *_pickerData;
     NSString *viewStatus;
     UIImage *frameOpen, *frameBusy, *frameNormal, *frameUncheckin, *checkout, *checkin, *statusNormal, *statusOpen, *statusBusy, *statusInactive, *avatarDefault ;
+    NSString *seatNumber ;
 }
 @end
 
@@ -23,26 +24,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    int uid = [[NSUserDefaults standardUserDefaults] integerForKey:@"uid"];
-//    NSString *stringurl = [NSString stringWithFormat:@"http://localhost:8080/linkdeskapi/api/user/%i/",uid];
-//    NSURL *URL = [NSURL URLWithString:stringurl];
-//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//    [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-//        NSLog(@"JSON: %@", responseObject);
-//        lblJapaneseName.text = [responseObject objectForKey:@"jpName"];
-//    } failure:^(NSURLSessionTask *operation, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//    }];
-    lblJapaneseName.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"jpName"];
-    lblEnglishName.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"elName"];
-    lblId.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
-    NSString *img = [[NSUserDefaults standardUserDefaults] stringForKey:@"avatarUrl"];
-    if ([img isEqualToString:@""]){
-        imgAvatar.image = avatarDefault;
-    }
-    else {
-        imgAvatar.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:img ]]];
-    }
+    seatNumber = [NSString stringWithFormat:@"seat-1"];
+
+    //    int uid = [[NSUserDefaults standardUserDefaults] integerForKey:@"uid"];
+    //    NSString *stringurl = [NSString stringWithFormat:@"http://localhost:8080/linkdeskapi/api/user/%i/",uid];
+    //    NSURL *URL = [NSURL URLWithString:stringurl];
+    //    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    //    [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    //        NSLog(@"JSON: %@", responseObject);
+    //        lblJapaneseName.text = [responseObject objectForKey:@"jpName"];
+    //    } failure:^(NSURLSessionTask *operation, NSError *error) {
+    //        NSLog(@"Error: %@", error);
+    //    }];
+//    lblJapaneseName.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"jpName"];
+//    lblEnglishName.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"elName"];
+//    lblId.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+//    NSString *img = [[NSUserDefaults standardUserDefaults] stringForKey:@"avatarUrl"];
+//    if ([img isEqualToString:@""]){
+//        imgAvatar.image = avatarDefault;
+//    }
+//    else {
+//        imgAvatar.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:img ]]];
+//    }
+    // set data demo
+    
+    
+    
     //
     SWRevealViewController *revealViewController = self.revealViewController;
     UITapGestureRecognizer *tap = [revealViewController tapGestureRecognizer];
@@ -79,6 +86,10 @@
     //
     avatarDefault = [UIImage imageNamed:@"top_frame_default@3x.png"];
     
+    //
+    imgAvatar.image = avatarDefault;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,14 +112,14 @@
     viewStatus = _pickerData[row];
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)btnOk:(id)sender {
     [UIView beginAnimations:nil context:NULL];
@@ -147,19 +158,42 @@
 
 - (IBAction)checkIn:(id)sender {
     if ([sender isSelected]) {
+        // checkout button
         [sender setBackgroundImage:checkin forState:UIControlStateNormal];
         [sender setSelected:NO];
         btnStatus.enabled = false;
         [frameStatus setImage:frameUncheckin];
         [btnStatus setBackgroundImage:statusInactive forState:UIControlStateNormal];
-
+        //
+//        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//        [manager POST:@"http://localhost:8080/linkdeskapi/api/reset-seat/" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+//            NSLog(@"Reset seat done !");
+//        } failure:^(NSURLSessionTask *operation, NSError *error) {
+//            NSLog(@"reset fail");
+//        }];
+        
     } else {
+        // checkin button
         [sender setBackgroundImage:checkout forState:UIControlStateSelected];
         [sender setSelected:YES];
         btnStatus.enabled = true;
         [frameStatus setImage:frameNormal];
         [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
+        //
+//        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+//        NSDictionary *params = @{@"seatNumber": seatNumber,
+//                                 @"userNumber": [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"]};
+//        [manager POST:@"http://localhost:8080/linkdeskapi/api/checkin/" parameters:params progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+//            _lblSeatNumber.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
+//            NSLog(@"return %@", responseObject);
+//            NSLog(@"Checkin ok with seatNumber: %@, userID: %@", seatNumber, [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"] );
+//        } failure:^(NSURLSessionTask *operation, NSError *error) {
+//            NSLog(@"Checkin fail %@", error);
+//        }];
     }
     
 }
 @end
+
