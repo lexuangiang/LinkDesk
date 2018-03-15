@@ -16,6 +16,8 @@
     NSString *viewStatus;
     UIImage *frameOpen, *frameBusy, *frameNormal, *frameUncheckin, *checkout, *checkin, *statusNormal, *statusOpen, *statusBusy, *statusInactive, *avatarDefault, *top_icon_checkin_off, *top_icon_checkin_on ;
     NSString *seatNumber ;
+    NSTimer *timer;
+    int ticker ;
 }
 @end
 
@@ -24,8 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    seatNumber = [NSString stringWithFormat:@"seat-1"];
+    ticker =0;
 
+    seatNumber = [NSString stringWithFormat:@"seat-1"];
     //    int uid = [[NSUserDefaults standardUserDefaults] integerForKey:@"uid"];
     //    NSString *stringurl = [NSString stringWithFormat:@"http://localhost:8080/linkdeskapi/api/user/%i/",uid];
     //    NSURL *URL = [NSURL URLWithString:stringurl];
@@ -36,6 +39,7 @@
     //    } failure:^(NSURLSessionTask *operation, NSError *error) {
     //        NSLog(@"Error: %@", error);
     //    }];
+    
 //    lblJapaneseName.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"jpName"];
 //    lblEnglishName.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"elName"];
 //    lblId.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"uid"];
@@ -68,7 +72,7 @@
     // Connect data
     self.picker.dataSource = self;
     self.picker.delegate = self;
-    viewPicker.frame = CGRectMake(0, 680, 378, 216);
+    viewPicker.frame = CGRectMake(0, 736, 414, 271);
     
     //
     frameOpen = [UIImage imageNamed:@"top_frame_open@3x.png"];
@@ -124,7 +128,7 @@
 - (IBAction)btnOk:(id)sender {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    viewPicker.frame = CGRectMake(0, 680, 378, 216);
+    viewPicker.frame = CGRectMake(0, 736, 414, 271);
     [UIView commitAnimations];
     
     if ([viewStatus isEqualToString:@"オープン"]){
@@ -144,14 +148,14 @@
 - (IBAction)btnCancel:(id)sender {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    viewPicker.frame = CGRectMake(0, 680, 378, 216);
+    viewPicker.frame = CGRectMake(0, 736, 414, 271);
     [UIView commitAnimations];
 }
 
 - (IBAction)changeStatus:(id)sender {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    viewPicker.frame = CGRectMake(0, 451, 378, 216);
+    viewPicker.frame = CGRectMake(0, 465, 414, 271);
     [UIView commitAnimations];
 }
 
@@ -166,6 +170,8 @@
         [btnStatus setBackgroundImage:statusInactive forState:UIControlStateNormal];
         [imgIconCheckin setImage:top_icon_checkin_off];
         _lblSeatNumber.text = @"チェックインしましょう";
+        _lblSeatNumber.frame = CGRectMake(51, 21, 199, 21);
+        imgIconCheckin.frame = CGRectMake(23, 15, 20, 27);
         //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //        manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -175,6 +181,7 @@
 //            NSLog(@"reset fail");
 //        }];
         
+        [timer invalidate];
     } else {
         // checkin button
         [sender setBackgroundImage:checkout forState:UIControlStateSelected];
@@ -184,6 +191,8 @@
         [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
         [imgIconCheckin setImage:top_icon_checkin_on];
         _lblSeatNumber.text = @"5F-1-21";
+        _lblSeatNumber.frame = CGRectMake(113, 21, 199, 21);
+        imgIconCheckin.frame = CGRectMake(80, 15, 20, 27);
         //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //        manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -196,8 +205,14 @@
 //        } failure:^(NSURLSessionTask *operation, NSError *error) {
 //            NSLog(@"Checkin fail %@", error);
 //        }];
+        
+        // set timer
+        timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(countTime) userInfo:nil repeats:YES];
     }
-    
+}
+-(void)countTime{
+        ticker ++;
+    NSLog(@"timer: %d",ticker);
 }
 @end
 

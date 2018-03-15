@@ -22,7 +22,7 @@
     // custom textfield txtusername
     CALayer *borderUsername = [CALayer layer];
     CGFloat borderWidthUsername = 1;
-    borderUsername.borderColor = [UIColor darkGrayColor].CGColor;
+    borderUsername.borderColor = [UIColor lightGrayColor].CGColor;
     borderUsername.frame = CGRectMake(0, txtUsername.frame.size.height - borderWidthUsername, txtUsername.frame.size.width, txtUsername.frame.size.height);
     borderUsername.borderWidth = borderWidthUsername;
     [txtUsername.layer addSublayer:borderUsername];
@@ -30,14 +30,14 @@
     // custom textfield password
     CALayer *borderPassword = [CALayer layer];
     CGFloat borderWidthPassword = 1;
-    borderPassword.borderColor = [UIColor darkGrayColor].CGColor;
+    borderPassword.borderColor = [UIColor lightGrayColor].CGColor;
     borderPassword.frame = CGRectMake(0, txtPassword.frame.size.height - borderWidthPassword, txtPassword.frame.size.width, txtPassword.frame.size.height);
     borderPassword.borderWidth = borderWidthPassword;
     [txtPassword.layer addSublayer:borderPassword];
     txtPassword.layer.masksToBounds = YES;
     // set focus on Username textfield
     [txtUsername becomeFirstResponder];
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(returnView:)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(returnView:  )];
     
     [self.view addGestureRecognizer:tap];
     // Call standartUserDefaults to check

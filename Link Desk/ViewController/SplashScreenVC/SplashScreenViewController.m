@@ -25,7 +25,7 @@
     } completion:^(BOOL finished) {
 
         //fade out
-        [UIView animateWithDuration:2.0f animations:^{
+        [UIView animateWithDuration:1.0f animations:^{
             [imageSplash setAlpha:0.0f];
         } completion:nil];
 
@@ -33,11 +33,11 @@
     
     int SavedInfo = [[NSUserDefaults standardUserDefaults] integerForKey:@"info"];
     if (SavedInfo == 1){
-        [self performSelector:@selector(showTopScreen) withObject:nil afterDelay:3];
+        [self performSelector:@selector(showTopScreen) withObject:nil afterDelay:1];
         NSLog(@"thong tin o flash: %i", SavedInfo);
     }
     else {
-        [self performSelector:@selector(showLoginScreen) withObject:nil afterDelay:3];
+        [self performSelector:@selector(showLoginScreen) withObject:nil afterDelay:1];
     }
 }
 - (void)showLoginScreen {
