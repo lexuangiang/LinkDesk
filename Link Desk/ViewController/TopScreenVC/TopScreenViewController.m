@@ -170,8 +170,9 @@
         [btnStatus setBackgroundImage:statusInactive forState:UIControlStateNormal];
         [imgIconCheckin setImage:top_icon_checkin_off];
         _lblSeatNumber.text = @"チェックインしましょう";
-        _lblSeatNumber.frame = CGRectMake(51, 21, 199, 21);
+        _lblSeatNumber.frame = CGRectMake(43, 21, 199, 21);
         imgIconCheckin.frame = CGRectMake(23, 15, 20, 27);
+         _lblSeatNumber.textColor = [UIColor darkGrayColor];
         //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //        manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -182,6 +183,7 @@
 //        }];
         
         [timer invalidate];
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"seat1"];
     } else {
         // checkin button
         [sender setBackgroundImage:checkout forState:UIControlStateSelected];
@@ -191,8 +193,9 @@
         [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
         [imgIconCheckin setImage:top_icon_checkin_on];
         _lblSeatNumber.text = @"5F-1-21";
-        _lblSeatNumber.frame = CGRectMake(113, 21, 199, 21);
-        imgIconCheckin.frame = CGRectMake(80, 15, 20, 27);
+        _lblSeatNumber.frame = CGRectMake(117, 21, 199, 21);
+        imgIconCheckin.frame = CGRectMake(88, 15, 20, 27);
+        _lblSeatNumber.textColor = [UIColor greenColor];
         //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //        manager.requestSerializer = [AFJSONRequestSerializer serializer];
