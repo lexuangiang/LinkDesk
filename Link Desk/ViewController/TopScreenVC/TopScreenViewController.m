@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    ticker =0;
+    ticker = [[NSUserDefaults standardUserDefaults] integerForKey:@"seat1"];
 
     seatNumber = [NSString stringWithFormat:@"seat-1"];
     //    int uid = [[NSUserDefaults standardUserDefaults] integerForKey:@"uid"];
@@ -170,8 +170,8 @@
         [btnStatus setBackgroundImage:statusInactive forState:UIControlStateNormal];
         [imgIconCheckin setImage:top_icon_checkin_off];
         _lblSeatNumber.text = @"チェックインしましょう";
-        _lblSeatNumber.frame = CGRectMake(43, 21, 199, 21);
-        imgIconCheckin.frame = CGRectMake(23, 15, 20, 27);
+        _lblSeatNumber.frame = CGRectMake(58, 21, 199, 21);
+        imgIconCheckin.frame = CGRectMake(28, 15, 20, 27);
          _lblSeatNumber.textColor = [UIColor darkGrayColor];
         //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -183,7 +183,7 @@
 //        }];
         
         [timer invalidate];
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"seat1"];
+        [[NSUserDefaults standardUserDefaults] setInteger:ticker forKey:@"seat1"];
     } else {
         // checkin button
         [sender setBackgroundImage:checkout forState:UIControlStateSelected];
