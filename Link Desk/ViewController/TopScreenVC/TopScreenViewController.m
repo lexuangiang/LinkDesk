@@ -27,6 +27,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     ticker = [[NSUserDefaults standardUserDefaults] integerForKey:@"seat1"];
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
 
     seatNumber = [NSString stringWithFormat:@"seat-1"];
     //    int uid = [[NSUserDefaults standardUserDefaults] integerForKey:@"uid"];
@@ -72,7 +77,7 @@
     // Connect data
     self.picker.dataSource = self;
     self.picker.delegate = self;
-    viewPicker.frame = CGRectMake(0, 736, 414, 271);
+    viewPicker.frame = CGRectMake(0, 1000, 414, 200);
     
     //
     frameOpen = [UIImage imageNamed:@"top_frame_open@3x.png"];
@@ -128,7 +133,7 @@
 - (IBAction)btnOk:(id)sender {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    viewPicker.frame = CGRectMake(0, 736, 414, 271);
+    viewPicker.frame = CGRectMake(0, 1000, 414, 200);
     [UIView commitAnimations];
     
     if ([viewStatus isEqualToString:@"オープン"]){
@@ -148,14 +153,16 @@
 - (IBAction)btnCancel:(id)sender {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    viewPicker.frame = CGRectMake(0, 736, 414, 271);
+    viewPicker.frame = CGRectMake(0, 1000, 414, 200);
     [UIView commitAnimations];
 }
 
 - (IBAction)changeStatus:(id)sender {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
-    viewPicker.frame = CGRectMake(0, 465, 414, 271);
+    int y_btnCheckin = btnCheckIn.frame.origin.y;
+    int x = btnCheckIn.frame.size.height;
+    viewPicker.frame = CGRectMake(0, y_btnCheckin - 200 + x, 414, 200);
     [UIView commitAnimations];
 }
 
@@ -170,8 +177,8 @@
         [btnStatus setBackgroundImage:statusInactive forState:UIControlStateNormal];
         [imgIconCheckin setImage:top_icon_checkin_off];
         _lblSeatNumber.text = @"チェックインしましょう";
-        _lblSeatNumber.frame = CGRectMake(58, 21, 199, 21);
-        imgIconCheckin.frame = CGRectMake(28, 15, 20, 27);
+//        _lblSeatNumber.frame = CGRectMake(58, 21, 199, 21);
+//        imgIconCheckin.frame = CGRectMake(28, 15, 20, 27);
          _lblSeatNumber.textColor = [UIColor darkGrayColor];
         //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -193,8 +200,8 @@
         [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
         [imgIconCheckin setImage:top_icon_checkin_on];
         _lblSeatNumber.text = @"5F-1-21";
-        _lblSeatNumber.frame = CGRectMake(117, 21, 199, 21);
-        imgIconCheckin.frame = CGRectMake(88, 15, 20, 27);
+//        _lblSeatNumber.frame = CGRectMake(117, 21, 199, 21);
+//        imgIconCheckin.frame = CGRectMake(88, 15, 20, 27);
         _lblSeatNumber.textColor = [UIColor greenColor];
         //
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
