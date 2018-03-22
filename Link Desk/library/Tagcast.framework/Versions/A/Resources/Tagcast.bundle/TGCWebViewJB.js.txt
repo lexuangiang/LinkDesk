@@ -1,0 +1,115 @@
+;(function() {
+	if (window.TGCJavascriptBridge) { return }
+	var messagingIframe
+	var sendMessageQueue = []
+	var receiveMessageQueue = []
+	var messageHandlers = {}
+	
+	var CUSTOM_PROTOCOL_SCHEME = 'tgcjbscheme'
+	var QUEUE_HAS_MESSAGE = '__TGCJB_QUEUE_MESSAGE__'
+	
+	var responseCallbacks = {}
+	var uniqueId = 1
+
+	function _createQueueBoundIframe(doc) {
+		messagingIframe = doc.createElement('iframe')
+		messagingIframe.style.display = 'none'
+		messagingIframe.src = CUSTOM_PROTOCOL_SCHEME + '://' + QUEUE_HAS_MESSAGE
+		doc.documentElement.appendChild(messagingIframe)
+	}
+	
+	function startScan() {
+		callHandler('startScan')
+	}
+
+	function stopScan() {
+		callHandler('stopScan')
+	}
+
+	function registerHandlerDidDiscovered(responseCallback) {
+		registerHandler('didDiscovered', responseCallback)
+	}
+
+ 	function registerHandlerChangeState(responseCallback) {
+		registerHandler('changeState', responseCallback)
+	}
+
+	function registerHandlerDidScanned(responseCallback) {
+		registerHandler('didScanned', responseCallback)
+	}
+
+    function registerHandlerDidScannedStrengthOrder(responseCallback) {
+        registerHandler('didScannedStrengthOrder', responseCallback)
+    }
+
+	function registerHandlerDidFailedWithError(responseCallback) {
+		registerHandler('didFailedWithError', responseCallback)
+	}
+
+    function registerHandlerDifferenceDeviceTimeInterval(responseCallback) {
+        registerHandler('differenceDeviceTimeInterval', responseCallback)
+    }
+
+	function registerHandler(handlerName, handler) {
+		messageHandlers[handlerName] = handler
+	}
+	
+	function callHandler(handlerName) {
+		_doSend({ handlerName:handlerName})
+	}
+	
+	function _doSend(message) {
+		sendMessageQueue.push(message)
+		messagingIframe.src = CUSTOM_PROTOCOL_SCHEME + '://' + QUEUE_HAS_MESSAGE
+	}
+
+	function _fetchQueue() {
+		var messageQueueString = JSON.stringify(sendMessageQueue)
+		sendMessageQueue = []
+		return messageQueueString
+	}
+
+	function _dispatchMessageFromNative(messageJSON) {
+		setTimeout(function _timeoutDispatchMessageFromNative() {
+			var message = JSON.parse(messageJSON)
+			var messageHandler
+			var responseCallback
+            if (message.handlerName) {
+                handler = messageHandlers[message.handlerName]
+            }
+				
+            try {
+                handler(message.data)
+            } catch(exception) {
+                if (typeof console != 'undefined') {
+                    console.log("TGCJavascriptBridge: WARNING: javascript handler threw.", message, exception)
+                }
+            }
+		})
+	}
+	
+	function _handleMessageFromNative(messageJSON) {
+        _dispatchMessageFromNative(messageJSON)
+	}
+
+	window.TGCJavascriptBridge = {
+		startScan: startScan,
+		stopScan: stopScan,
+		registerHandlerChangeState: registerHandlerChangeState,
+		registerHandlerDidDiscovered: registerHandlerDidDiscovered,
+		registerHandlerDidScanned: registerHandlerDidScanned,
+        registerHandlerDidScannedStrengthOrder: registerHandlerDidScannedStrengthOrder,
+		registerHandlerDidFailedWithError: registerHandlerDidFailedWithError,
+        registerHandlerDifferenceDeviceTimeInterval: registerHandlerDifferenceDeviceTimeInterval,
+		_fetchQueue: _fetchQueue,
+		_handleMessageFromNative: _handleMessageFromNative
+	}
+
+	var doc = document
+	_createQueueBoundIframe(doc)
+	var boundEvent = doc.createEvent('Events')
+	boundEvent.initEvent('TGCJavascriptBridgeBound')
+	boundEvent.bridge = TGCJavascriptBridge
+	doc.dispatchEvent(boundEvent)
+})();
+

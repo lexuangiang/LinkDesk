@@ -14,16 +14,22 @@ PODS:
   - AFNetworking/Serialization (3.2.0)
   - AFNetworking/UIKit (3.2.0):
     - AFNetworking/NSURLSession
+  - CustomIOSAlertView (0.9.5)
+  - LGSideMenuController (2.1.1)
   - SWRevealViewController (2.3.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2)
+  - CustomIOSAlertView (~> 0.9.5)
+  - LGSideMenuController
   - SWRevealViewController
 
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  CustomIOSAlertView: cc4fa8e36219be3fd5ebcd40789f5b4aaae0f38e
+  LGSideMenuController: ae40c80983ab8b8801c7cef0a6804d43aaa72d45
   SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
 
-PODFILE CHECKSUM: 89ae4cae2c571719ac321c3f7a7b4ee61a006a38
+PODFILE CHECKSUM: 4a0dbeb340a1cac1254b383e713dc425705c3ca7
 
 COCOAPODS: 1.4.0

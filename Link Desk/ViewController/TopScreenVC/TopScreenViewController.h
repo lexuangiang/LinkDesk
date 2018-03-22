@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "CustomIOSAlertView.h"
 
-@interface TopScreenViewController : ViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface TopScreenViewController : ViewController<UIPickerViewDataSource, UIPickerViewDelegate, CustomIOSAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *btnUserList;
 @property (strong, nonatomic) IBOutlet UIButton *btnCheckIn;
 @property (strong, nonatomic) IBOutlet UIButton *btnStatus;
@@ -27,6 +28,5 @@
 - (IBAction)btnCancel:(id)sender;
 - (IBAction)changeStatus:(id)sender;
 - (IBAction)checkIn:(id)sender;
-
 @end
 

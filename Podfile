@@ -8,4 +8,6 @@ target 'Link Desk' do
   # Pods for Link Desk
   pod 'SWRevealViewController'
   pod 'AFNetworking', '~> 3.2'
+  pod 'LGSideMenuController'
+  pod 'CustomIOSAlertView', '~> 0.9.5'
 end

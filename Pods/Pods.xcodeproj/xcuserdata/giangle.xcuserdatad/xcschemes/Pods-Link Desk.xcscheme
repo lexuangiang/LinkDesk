@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0D44390D6BC2138E9D12DB126C8EF2D0"
+               BlueprintIdentifier = "FDBFE61E2C70DD9DC553E7C84E63C538"
                BlueprintName = "Pods-Link Desk"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libPods-Link Desk.a">
