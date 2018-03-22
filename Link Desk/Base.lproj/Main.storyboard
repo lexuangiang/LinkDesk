@@ -217,6 +217,7 @@
                         <viewLayoutGuide key="safeArea" id="Cqi-Ta-dnU"/>
                     </view>
                     <connections>
+                        <outlet property="expandableTableView" destination="tyV-7Z-B79" id="Prt-Ma-MBC"/>
                         <outlet property="searchDisplayController" destination="ULH-jW-4e2" id="1JH-To-nKw"/>
                     </connections>
                 </viewController>
@@ -481,6 +482,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hqX-PB-hBu">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

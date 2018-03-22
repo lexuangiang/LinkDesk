@@ -9,5 +9,10 @@
 #import "ViewController.h"
 
 @interface UserListViewController : ViewController <UITableViewDelegate, UITableViewDataSource>
+{
+    NSMutableArray  *arrayForBool;
+    NSArray *sectionTitleArray;
+}
+@property (weak, nonatomic) IBOutlet UITableView *expandableTableView;
 
 @end

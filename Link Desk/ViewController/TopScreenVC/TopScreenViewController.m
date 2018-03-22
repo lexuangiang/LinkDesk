@@ -76,7 +76,7 @@ int const timeLimit = 30;
     UITapGestureRecognizer *tap = [revealViewController tapGestureRecognizer];
     //tap.delegate = self;
     [topView addGestureRecognizer:tap];
-    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
     
     if ( revealViewController )
     {
@@ -256,7 +256,6 @@ int const timeLimit = 30;
             NSString *valueSeatNumber = [[NSUserDefaults standardUserDefaults] valueForKey:seatNumber];
             NSInteger valueSeatNumberInt = [valueSeatNumber integerValue];
             if ( valueSeatNumberInt > timeLimit){
-                
                 // Add some custom content to the alert view
                 [alertView setContainerView:[self createDialogView]];
                 
@@ -358,6 +357,7 @@ int const timeLimit = 30;
     [message1 setFont:[UIFont systemFontOfSize:15]];
     [message2 setFont:[UIFont systemFontOfSize:15]];
     [suggestDesk setText:@"「 5F-2-1 」"];
+    
     message1.textAlignment = UITextAlignmentCenter ;
     suggestDesk.textAlignment = UITextAlignmentCenter ;
     message1.numberOfLines = 2;
@@ -388,6 +388,55 @@ int const timeLimit = 30;
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"thong bao" message:@"scan fail" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:@"ok", nil];
     }
+}
+- (void)tagcastManager:(TGCTagcastManager *)manager didFailWithError:(NSError* )error {
+    // Add some custom content to the alert view
+    [alertView setContainerView:[self createDialogView2]];
+    
+    // Modify the parameters
+    [alertView setButtonTitles:NULL];
+    [alertView setDelegate:self];
+    
+    [alertView setUseMotionEffects:true];
+    
+    // And launch the dialog
+    [alertView show];
+}
+- (UIView *)createDialogView2
+{
+    UIView *DialogView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 343, 258)];
+    DialogView.backgroundColor = [UIColor whiteColor];
+    UIButton *btnOk = [[UIButton alloc] initWithFrame:CGRectMake(0, 209, 343, 50)];
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(50, 5, 258, 40)];
+    UILabel *message1 = [[UILabel alloc] initWithFrame:CGRectMake(50, 50, 258, 50)];
+    UILabel *message2 = [[UILabel alloc] initWithFrame:CGRectMake(50, 100, 258, 100)];
+    UILabel *suggestDesk = [[UILabel alloc] initWithFrame:CGRectMake(0, 160, 343, 50)];
+    [title setText:@"チェックインできませんでした"];
+    [message1 setText:@"再度、デスクのマークに置いて リトライしてください。"];
+    [message2 setText:@"※Bluetoothをオンにしてください。他の機器とペアリングしている場合は、接続を解除してから再度お試しください。"];
+    [title setFont:[UIFont boldSystemFontOfSize:17]];
+    [message1 setFont:[UIFont systemFontOfSize:15]];
+    [message2 setFont:[UIFont systemFontOfSize:15]];
+    [suggestDesk setText:@""];
+    
+    message1.textAlignment = UITextAlignmentCenter ;
+    message2.textAlignment = UITextAlignmentCenter ;
+    suggestDesk.textAlignment = UITextAlignmentCenter ;
+    message1.numberOfLines = 2;
+    message2.numberOfLines = 4;
+    title.numberOfLines = 2;
+    [btnOk setBackgroundImage:[UIImage imageNamed:@"dialog_btn_close@3x.png"] forState:UIControlStateNormal];
+    [btnOk setTitle:@"" forState:UIControlStateNormal];
+    [btnOk addTarget:self
+              action:@selector(btnOkAlertTap)
+    forControlEvents:UIControlEventTouchUpInside];
+    [DialogView addSubview:title];
+    [DialogView addSubview:message1];
+    [DialogView addSubview:message2];
+    [DialogView addSubview:suggestDesk];
+    [DialogView addSubview:btnOk];
+    
+    return DialogView;
 }
 @end
 

@@ -49,8 +49,9 @@
 		F61496C420598B83004AB6A4 /* UserListTable.m in Sources */ = {isa = PBXBuildFile; fileRef = F61496C320598B83004AB6A4 /* UserListTable.m */; };
 		F6A5D0C7205048DD0005BBFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6A5D0C6205048DD0005BBFC /* LaunchScreen.storyboard */; };
 		F6A5D0CA20506CDC0005BBFC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A5D0C920506CDC0005BBFC /* LoginViewController.m */; };
-		F6B1346F2063697C004E024F /* Tagcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B1346E2063697C004E024F /* Tagcast.framework */; };
-		F6B13471206369A9004E024F /* Tagcast.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F6B13470206369A9004E024F /* Tagcast.bundle */; };
+		F6B134A320639403004E024F /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B134A220639403004E024F /* Realm.framework */; };
+		F6B134A52063946D004E024F /* Tagcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B134A42063946D004E024F /* Tagcast.framework */; };
+		F6B134A720639476004E024F /* Tagcast.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F6B134A620639476004E024F /* Tagcast.bundle */; };
 		F6B5C60920550C4C00D8C4DF /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B5C60820550C4C00D8C4DF /* UserListViewController.m */; };
 		F6B9B8C52061F92B003FF92B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B9B8C42061F92B003FF92B /* CoreBluetooth.framework */; };
 		F6B9B8C72061F934003FF92B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B9B8C62061F934003FF92B /* CoreData.framework */; };
@@ -114,8 +115,9 @@
 		F6A5D0C6205048DD0005BBFC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6A5D0C820506CDC0005BBFC /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F6A5D0C920506CDC0005BBFC /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		F6B1346E2063697C004E024F /* Tagcast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tagcast.framework; path = "../../../../TAGCAST-SDK-iOS/Library/Tagcast.framework"; sourceTree = "<group>"; };
-		F6B13470206369A9004E024F /* Tagcast.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Tagcast.bundle; path = "../../../../TAGCAST-SDK-iOS/Library/Tagcast.framework/Versions/A/Resources/Tagcast.bundle"; sourceTree = "<group>"; };
+		F6B134A220639403004E024F /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		F6B134A42063946D004E024F /* Tagcast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Tagcast.framework; sourceTree = "<group>"; };
+		F6B134A620639476004E024F /* Tagcast.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Tagcast.bundle; path = Tagcast.framework/Versions/A/Resources/Tagcast.bundle; sourceTree = "<group>"; };
 		F6B5C60720550C4C00D8C4DF /* UserListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListViewController.h; sourceTree = "<group>"; };
 		F6B5C60820550C4C00D8C4DF /* UserListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
 		F6B9B8C42061F92B003FF92B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -144,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B134A320639403004E024F /* Realm.framework in Frameworks */,
 				F6B9B8CF2061F963003FF92B /* libc++.tbd in Frameworks */,
 				F6B9B8CD2061F957003FF92B /* libz.tbd in Frameworks */,
 				F6B9B8CB2061F948003FF92B /* Security.framework in Frameworks */,
@@ -151,7 +154,7 @@
 				F6B9B8C72061F934003FF92B /* CoreData.framework in Frameworks */,
 				F6B9B8C52061F92B003FF92B /* CoreBluetooth.framework in Frameworks */,
 				D573266D4FC5E81D8C09C510 /* libPods-Link Desk.a in Frameworks */,
-				F6B1346F2063697C004E024F /* Tagcast.framework in Frameworks */,
+				F6B134A52063946D004E024F /* Tagcast.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,8 +199,9 @@
 		F6B9B8D7206207FA003FF92B /* library */ = {
 			isa = PBXGroup;
 			children = (
-				F6B13470206369A9004E024F /* Tagcast.bundle */,
-				F6B1346E2063697C004E024F /* Tagcast.framework */,
+				F6B134A620639476004E024F /* Tagcast.bundle */,
+				F6B134A42063946D004E024F /* Tagcast.framework */,
+				F6B134A220639403004E024F /* Realm.framework */,
 			);
 			path = library;
 			sourceTree = "<group>";
@@ -403,7 +407,7 @@
 				F61496BF205980E1004AB6A4 /* avatar@3x.png in Resources */,
 				F614969D20596E21004AB6A4 /* header_btn_list@3x.png in Resources */,
 				F61496A220596E21004AB6A4 /* list_btn_reserv_on@3x.png in Resources */,
-				F6B13471206369A9004E024F /* Tagcast.bundle in Resources */,
+				F6B134A720639476004E024F /* Tagcast.bundle in Resources */,
 				F61496B520596E21004AB6A4 /* list_icon_status_normal@3x.png in Resources */,
 				F61496B020596E21004AB6A4 /* list_icon_search@3x.png in Resources */,
 				F61496AB20596E21004AB6A4 /* top_btn_status_open@3x.png in Resources */,
@@ -625,6 +629,11 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Link\\ Desk/library",
 					"$(PROJECT_DIR)/Link\\ Desk/library",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
 				);
 				INFOPLIST_FILE = "Link Desk/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
@@ -644,6 +653,11 @@
 				DEVELOPMENT_TEAM = LBDS9CU3QC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
+					"$(PROJECT_DIR)/Link\\ Desk/library",
 					"$(PROJECT_DIR)/Link\\ Desk/library",
 					"$(PROJECT_DIR)/Link\\ Desk/library",
 				);
