@@ -11,7 +11,6 @@
 #import "UserListTable.h"
 
 @interface UserListViewController ()
-
 @end
 
 @implementation UserListViewController{
@@ -19,6 +18,7 @@
     NSMutableArray *arrData;
     NSMutableString *status;
     UIImage *imgStatusOpen, *imgStatusNormal, *imgStatusBusy, *imgReservInactive, *imgReservOn, *imgReservOff, *imgFrame;
+    BOOL imageHeaderStatus;
 }
 
 - (void)viewDidLoad {
@@ -36,6 +36,8 @@
     imgReservOn = [UIImage imageNamed:@"list_btn_reserv_on@3x.png"];
     imgReservOff = [UIImage imageNamed:@"list_btn_reserv_off@3x.png"];
     imgReservInactive = [UIImage imageNamed:@"list_btn_reserv_inactive@3x.png"];
+    
+    imageHeaderStatus = FALSE;
     
     //    NSURL *URL = [NSURL URLWithString:@"http://localhost:8080/linkdeskapi/api/user/"];
     
@@ -194,7 +196,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 40;
 }
 
 #pragma mark - Creating View for TableView Section
@@ -205,14 +207,25 @@
     UIView *sectionView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 280,40)];
     sectionView.tag=section;
     UILabel *viewLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, _expandableTableView.frame.size.width-10, 40)];
-    viewLabel.backgroundColor=[UIColor whiteColor];
+    viewLabel.backgroundColor=[UIColor redColor];
     viewLabel.textColor=[UIColor blackColor];
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"avatar@3x.png"]];
-//    imageView.frame = CGRectMake(200,0,40,40);
+//    UIImageView *imageView;
+//    if (imageHeaderStatus == FALSE){
+//      UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_btn_open@3x.png"]];
+//    }
+//    else {
+//      UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_btn_close@3x.png"]];
+//    }
+//    imageView.frame = CGRectMake(240,0,40,40);
 //    [sectionView addSubview:imageView];
+//    UIButton *btnOpenList = [[UIButton alloc] initWithFrame:CGRectMake(240, 0, 40, 40)];
+//    [btnOpenList setBackgroundImage:[UIImage imageNamed:@"list_btn_open@3x.png"] forState:UIControlStateNormal];
+//    [btnOpenList addTarget:self action:@selector(btnOpenListTap:) forControlEvents:UIControlEventTouchUpInside];
+//    [sectionView addSubview:btnOpenList];
+    
     viewLabel.font=[UIFont systemFontOfSize:15];
     viewLabel.text=[NSString stringWithFormat:[sectionTitleArray objectAtIndex:section]];
-    
+    [viewLabel sizeToFit];
     [sectionView addSubview:viewLabel];
     /********** Add a custom Separator with Section view *******************/
 //    UIView* separatorLineView = [[UIView alloc] initWithFrame:CGRectMake(15, 40, _expandableTableView.frame.size.width-15, 1)];
@@ -222,18 +235,17 @@
     /********** Add UITapGestureRecognizer to SectionView   **************/
     
     UITapGestureRecognizer  *headerTapped   = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sectionHeaderTapped:)];
+    
     [sectionView addGestureRecognizer:headerTapped];
     
     return  sectionView;
-    
-    
 }
 
 
 #pragma mark - Table header gesture tapped
 
 - (void)sectionHeaderTapped:(UITapGestureRecognizer *)gestureRecognizer{
-    
+    NSLog(@"header tap");
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:gestureRecognizer.view.tag];
     if (indexPath.row == 0) {
         BOOL collapsed  = [[arrayForBool objectAtIndex:indexPath.section] boolValue];
@@ -243,8 +255,9 @@
             }
         }
         [_expandableTableView reloadSections:[NSIndexSet indexSetWithIndex:gestureRecognizer.view.tag] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
     }
-    
+}
+-(void)changeImageHeader{
+
 }
 @end

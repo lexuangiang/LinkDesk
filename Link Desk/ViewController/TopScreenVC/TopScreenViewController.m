@@ -117,10 +117,6 @@ int const timeLimit = 30;
    
     isChecked = FALSE;
 }
--(void)viewWillAppear:(BOOL)animated{
-    [[TGCTagcastManager sharedManager] startScan];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -241,7 +237,7 @@ int const timeLimit = 30;
         NSLog(@"value for seatNumber: %@",[[NSUserDefaults standardUserDefaults] valueForKey:seatNumber]);
     } else {
         // checkin button
-        
+        [[TGCTagcastManager sharedManager] startScan];
         
         NSDictionary *tagcast_value = [[NSUserDefaults standardUserDefaults] valueForKey:@"current_tagcast"];
         if (tagcast_value != nil){
@@ -251,40 +247,20 @@ int const timeLimit = 30;
 //        NSString *serial_id = tagcast_value[kTGCKeySerialIdentifier];
 //        seatNumber = [NSString stringWithString:serial_id];
         
-        
-            //get time checkin
-            [[NSUserDefaults standardUserDefaults] setInteger:[self getTime] forKey:@"CheckinTime"];
-            [[NSUserDefaults standardUserDefaults] setObject:dataTimer forKey:@"arrayDataDesk"];
-            NSLog(@"NSuserdefaults data desk: %@", [[NSUserDefaults standardUserDefaults] valueForKey:@"arrayDataDesk"]);
-            NSString *valueSeatNumber = [[NSUserDefaults standardUserDefaults] valueForKey:seatNumber];
-            NSInteger valueSeatNumberInt = [valueSeatNumber integerValue];
-            if ( valueSeatNumberInt > timeLimit){
-                // Add some custom content to the alert view
-                [alertView setContainerView:[self createDialogView]];
-                
-                // Modify the parameters
-                [alertView setButtonTitles:NULL];
-                [alertView setDelegate:self];
-                
-                [alertView setUseMotionEffects:true];
-                
-                // And launch the dialog
-                [alertView show];
-                isChecked = FALSE;
-                NSLog(@"Time over %@", seatNumber);
-            }
-            else {
-                [sender setBackgroundImage:checkout forState:UIControlStateSelected];
-                [sender setSelected:YES];
-                btnStatus.enabled = true;
-                [frameStatus setImage:frameNormal];
-                [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
-                [imgIconCheckin setImage:top_icon_checkin_on];
-                //            _lblSeatNumber.text = @"5F-1-21";
-                _lblSeatNumber.text = tagcast_value[kTGCKeyEntityNumber];
-                _lblSeatNumber.textColor = [UIColor greenColor];
-                isChecked = TRUE;
-            }
+        //get time checkin
+        [[NSUserDefaults standardUserDefaults] setInteger:[self getTime] forKey:@"CheckinTime"];
+        [[NSUserDefaults standardUserDefaults] setObject:dataTimer forKey:@"arrayDataDesk"];
+        //
+        [sender setBackgroundImage:checkout forState:UIControlStateSelected];
+        [sender setSelected:YES];
+        btnStatus.enabled = true;
+        [frameStatus setImage:frameNormal];
+        [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
+        [imgIconCheckin setImage:top_icon_checkin_on];
+        //_lblSeatNumber.text = @"5F-1-21";
+        _lblSeatNumber.text = tagcast_value[kTGCKeyEntityNumber];
+        _lblSeatNumber.textColor = [UIColor greenColor];
+        isChecked = TRUE;
         }
         else
             NSLog(@"Not Found !");
@@ -357,7 +333,11 @@ int const timeLimit = 30;
     [title setFont:[UIFont boldSystemFontOfSize:17]];
     [message1 setFont:[UIFont systemFontOfSize:15]];
     [message2 setFont:[UIFont systemFontOfSize:15]];
-    [suggestDesk setText:@"「 5F-2-1 」"];
+    
+    uint32_t rnd = arc4random_uniform([serial_id_data count]);
+    NSString *randomDesk = [serial_id_data objectAtIndex:rnd];
+//    [suggestDesk setText:@"「  」"];
+    [suggestDesk setText:[NSString stringWithFormat:@"「 %@ 」", randomDesk]];
     
     message1.textAlignment = UITextAlignmentCenter ;
     suggestDesk.textAlignment = UITextAlignmentCenter ;
@@ -392,7 +372,26 @@ int const timeLimit = 30;
         
         if ([serial_id_data containsObject:serial_id]){
 //            [[TGCTagcastManager sharedManager] stopScan];
-            [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"current_tagcast"];
+            NSString *valueSeatNumber = [[NSUserDefaults standardUserDefaults] valueForKey:seatNumber];
+            NSInteger valueSeatNumberInt = [valueSeatNumber integerValue];
+            if ( valueSeatNumberInt > timeLimit){
+                // Add some custom content to the alert view
+                [alertView setContainerView:[self createDialogView]];
+                
+                // Modify the parameters
+                [alertView setButtonTitles:NULL];
+                [alertView setDelegate:self];
+                
+                [alertView setUseMotionEffects:true];
+                
+                // And launch the dialog
+                [alertView show];
+                isChecked = FALSE;
+                NSLog(@"Time over %@", seatNumber);
+            }
+            else {
+               [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"current_tagcast"];
+            }
         }
         else {
             NSLog(@"Scan not success");
