@@ -418,17 +418,17 @@ int const timeLimit = 30;
     //    }
 }
 - (void)tagcastManager:(TGCTagcastManager *)manager didFailWithError:(NSError* )error {
-//    // Add some custom content to the alert view
-//    [alertView setContainerView:[self createDialogView2]];
-//
-//    // Modify the parameters
-//    [alertView setButtonTitles:NULL];
-//    [alertView setDelegate:self];
-//
-//    [alertView setUseMotionEffects:true];
-//
-//    // And launch the dialog
-//    [alertView show];
+    // Add some custom content to the alert view
+    [alertView setContainerView:[self createDialogView2]];
+
+    // Modify the parameters
+    [alertView setButtonTitles:NULL];
+    [alertView setDelegate:self];
+
+    [alertView setUseMotionEffects:true];
+
+    // And launch the dialog
+    [alertView show];
 }
 - (UIView *)createDialogView2
 {
