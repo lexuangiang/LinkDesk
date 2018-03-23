@@ -209,15 +209,15 @@
     UILabel *viewLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, _expandableTableView.frame.size.width-10, 40)];
     viewLabel.backgroundColor=[UIColor redColor];
     viewLabel.textColor=[UIColor blackColor];
-//    UIImageView *imageView;
-//    if (imageHeaderStatus == FALSE){
-//      UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_btn_open@3x.png"]];
-//    }
-//    else {
-//      UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_btn_close@3x.png"]];
-//    }
-//    imageView.frame = CGRectMake(240,0,40,40);
-//    [sectionView addSubview:imageView];
+    UIImageView *imageView;
+    if (imageHeaderStatus == FALSE){
+    imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_btn_open@3x.png"]];
+    }
+    else {
+      imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"list_btn_close@3x.png"]];
+    }
+    imageView.frame = CGRectMake(280,0,40,40);
+    [sectionView addSubview:imageView];
 //    UIButton *btnOpenList = [[UIButton alloc] initWithFrame:CGRectMake(240, 0, 40, 40)];
 //    [btnOpenList setBackgroundImage:[UIImage imageNamed:@"list_btn_open@3x.png"] forState:UIControlStateNormal];
 //    [btnOpenList addTarget:self action:@selector(btnOpenListTap:) forControlEvents:UIControlEventTouchUpInside];
@@ -246,6 +246,14 @@
 
 - (void)sectionHeaderTapped:(UITapGestureRecognizer *)gestureRecognizer{
     NSLog(@"header tap");
+    if (imageHeaderStatus == FALSE){
+        imageHeaderStatus = TRUE;
+        NSLog(@"TRUE");
+    }
+    else{
+        imageHeaderStatus = FALSE;
+        NSLog(@"FALSE");
+    }
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:gestureRecognizer.view.tag];
     if (indexPath.row == 0) {
         BOOL collapsed  = [[arrayForBool objectAtIndex:indexPath.section] boolValue];

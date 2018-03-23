@@ -239,31 +239,31 @@ int const timeLimit = 30;
         // checkin button
         [[TGCTagcastManager sharedManager] startScan];
         
-        NSDictionary *tagcast_value = [[NSUserDefaults standardUserDefaults] valueForKey:@"current_tagcast"];
-        if (tagcast_value != nil){
-            
-//        NSString *spot = tagcast_value[kTGCKeySpotIdentifier];
-//        NSString *entity = tagcast_value[kTGCKeyEntityNumber];
-//        NSString *serial_id = tagcast_value[kTGCKeySerialIdentifier];
-//        seatNumber = [NSString stringWithString:serial_id];
-        
-        //get time checkin
-        [[NSUserDefaults standardUserDefaults] setInteger:[self getTime] forKey:@"CheckinTime"];
-        [[NSUserDefaults standardUserDefaults] setObject:dataTimer forKey:@"arrayDataDesk"];
-        //
-        [sender setBackgroundImage:checkout forState:UIControlStateSelected];
-        [sender setSelected:YES];
-        btnStatus.enabled = true;
-        [frameStatus setImage:frameNormal];
-        [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
-        [imgIconCheckin setImage:top_icon_checkin_on];
-        //_lblSeatNumber.text = @"5F-1-21";
-        _lblSeatNumber.text = tagcast_value[kTGCKeyEntityNumber];
-        _lblSeatNumber.textColor = [UIColor greenColor];
-        isChecked = TRUE;
-        }
-        else
-            NSLog(@"Not Found !");
+//        NSDictionary *tagcast_value = [[NSUserDefaults standardUserDefaults] valueForKey:@"current_tagcast"];
+//        if (tagcast_value != nil){
+//
+////        NSString *spot = tagcast_value[kTGCKeySpotIdentifier];
+////        NSString *entity = tagcast_value[kTGCKeyEntityNumber];
+////        NSString *serial_id = tagcast_value[kTGCKeySerialIdentifier];
+////        seatNumber = [NSString stringWithString:serial_id];
+//
+//        //get time checkin
+//        [[NSUserDefaults standardUserDefaults] setInteger:[self getTime] forKey:@"CheckinTime"];
+//        [[NSUserDefaults standardUserDefaults] setObject:dataTimer forKey:@"arrayDataDesk"];
+//        //
+//        [sender setBackgroundImage:checkout forState:UIControlStateSelected];
+//        [sender setSelected:YES];
+//        btnStatus.enabled = true;
+//        [frameStatus setImage:frameNormal];
+//        [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
+//        [imgIconCheckin setImage:top_icon_checkin_on];
+//        //_lblSeatNumber.text = @"5F-1-21";
+//        _lblSeatNumber.text = tagcast_value[kTGCKeyEntityNumber];
+//        _lblSeatNumber.textColor = [UIColor greenColor];
+//        isChecked = TRUE;
+//        }
+//        else
+//            NSLog(@"Not Found !");
         
 //        //random seatNumber data demo
 //        uint32_t rnd = arc4random_uniform([sampleDataDesk count]);
@@ -360,60 +360,75 @@ int const timeLimit = 30;
 -(void)btnOkAlertTap{
     [alertView close];
 }
-- (void)tagcastManager:(TGCTagcastManager *)manager didScannedStrengthOrderTagcasts:(NSArray *)tagcasts {
+- (void)tagcastManager:(TGCTagcastManager *)manager didDiscoveredTagcast:(NSDictionary* )tagcast {
     NSDictionary *dict = nil;
-    if(tagcasts.count) {
-        dict = [tagcasts firstObject];
-        
-        NSString *spot = dict[kTGCKeySpotIdentifier];
-        NSString *entity = dict[kTGCKeyEntityNumber];
-        NSString *serial_id = dict[kTGCKeySerialIdentifier];
-        seatNumber = [NSString stringWithString:serial_id];
-        
-        if ([serial_id_data containsObject:serial_id]){
-//            [[TGCTagcastManager sharedManager] stopScan];
-            NSString *valueSeatNumber = [[NSUserDefaults standardUserDefaults] valueForKey:seatNumber];
-            NSInteger valueSeatNumberInt = [valueSeatNumber integerValue];
-            if ( valueSeatNumberInt > timeLimit){
-                // Add some custom content to the alert view
-                [alertView setContainerView:[self createDialogView]];
-                
-                // Modify the parameters
-                [alertView setButtonTitles:NULL];
-                [alertView setDelegate:self];
-                
-                [alertView setUseMotionEffects:true];
-                
-                // And launch the dialog
-                [alertView show];
-                isChecked = FALSE;
-                NSLog(@"Time over %@", seatNumber);
-            }
-            else {
-               [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"current_tagcast"];
-            }
+    //    if(tagcasts.count) {
+    dict = tagcast;
+    
+    NSString *spot = dict[kTGCKeySpotIdentifier];
+    NSString *entity = dict[kTGCKeyEntityNumber];
+    NSString *serial_id = [[dict objectForKey:@"data"] objectForKey:@"serial_id"];
+    seatNumber = serial_id;
+    
+    NSLog(@"%s", serial_id);
+    if ([serial_id_data containsObject:serial_id]){
+        [[TGCTagcastManager sharedManager] stopScan];
+        NSString *valueSeatNumber = [[NSUserDefaults standardUserDefaults] valueForKey:seatNumber];
+        NSInteger valueSeatNumberInt = [valueSeatNumber integerValue];
+        if ( valueSeatNumberInt > timeLimit){
+            // Add some custom content to the alert view
+            [alertView setContainerView:[self createDialogView]];
+            
+            // Modify the parameters
+            [alertView setButtonTitles:NULL];
+            [alertView setDelegate:self];
+            
+            [alertView setUseMotionEffects:true];
+            
+            // And launch the dialog
+            [alertView show];
+            isChecked = FALSE;
+            NSLog(@"Time over %@", seatNumber);
         }
         else {
-            NSLog(@"Scan not success");
+            [[NSUserDefaults standardUserDefaults] setObject:dict forKey:@"current_tagcast"];
+            //get time checkin
+            [[NSUserDefaults standardUserDefaults] setInteger:[self getTime] forKey:@"CheckinTime"];
+            [[NSUserDefaults standardUserDefaults] setObject:dataTimer forKey:@"arrayDataDesk"];
+            //
+            [btnCheckIn setBackgroundImage:checkout forState:UIControlStateSelected];
+            [btnCheckIn setSelected:YES];
+            btnStatus.enabled = true;
+            [frameStatus setImage:frameNormal];
+            [btnStatus setBackgroundImage:statusNormal forState:UIControlStateNormal];
+            [imgIconCheckin setImage:top_icon_checkin_on];
+            //_lblSeatNumber.text = @"5F-1-21";
+            _lblSeatNumber.text = entity;
+            _lblSeatNumber.textColor = [UIColor greenColor];
+            isChecked = TRUE;
         }
-        
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"thong bao" message:@"scan fail" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:@"ok", nil];
+        NSLog(@"Scan not success");
     }
+    
+    //    }
+    //    else {
+    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@“thong bao” message:@“scan fail” delegate:self cancelButtonTitle:@“ok” otherButtonTitles:@“ok”, nil];
+    //    }
 }
 - (void)tagcastManager:(TGCTagcastManager *)manager didFailWithError:(NSError* )error {
-    // Add some custom content to the alert view
-    [alertView setContainerView:[self createDialogView2]];
-    
-    // Modify the parameters
-    [alertView setButtonTitles:NULL];
-    [alertView setDelegate:self];
-    
-    [alertView setUseMotionEffects:true];
-    
-    // And launch the dialog
-    [alertView show];
+//    // Add some custom content to the alert view
+//    [alertView setContainerView:[self createDialogView2]];
+//
+//    // Modify the parameters
+//    [alertView setButtonTitles:NULL];
+//    [alertView setDelegate:self];
+//
+//    [alertView setUseMotionEffects:true];
+//
+//    // And launch the dialog
+//    [alertView show];
 }
 - (UIView *)createDialogView2
 {
