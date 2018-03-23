@@ -207,7 +207,9 @@
     UILabel *viewLabel=[[UILabel alloc]initWithFrame:CGRectMake(20, 0, _expandableTableView.frame.size.width-10, 40)];
     viewLabel.backgroundColor=[UIColor whiteColor];
     viewLabel.textColor=[UIColor blackColor];
-    
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"avatar@3x.png"]];
+//    imageView.frame = CGRectMake(200,0,40,40);
+//    [sectionView addSubview:imageView];
     viewLabel.font=[UIFont systemFontOfSize:15];
     viewLabel.text=[NSString stringWithFormat:[sectionTitleArray objectAtIndex:section]];
     
